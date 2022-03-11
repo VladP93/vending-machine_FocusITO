@@ -1,212 +1,38 @@
 import React from "react";
 
-export default function Catalog() {
+export default function Catalog(props) {
+  const { foodlist, setSelectedFood } = props;
+
+  const onClick = (food) => {
+    setSelectedFood(food);
+  };
+
   return (
     <div>
       <div className="row">
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <div className="food-container">
-            <img
-              className="menu-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-            <p>id: 0000</p>
-            <p>
-              <b>name xxxxx</b>
-              <br />
-              time to prepare: xxs
-            </p>
-          </div>
-        </div>
+        {foodlist.map((e) => {
+          return (
+            <div
+              className="col-12 col-sm-6 col-md-4"
+              key={e.id}
+              onClick={() => {
+                onClick(e);
+              }}
+            >
+              <div className="food-container">
+                <img className="menu-image" src={e.thumbnail} alt={e.name} />
+                <p>
+                  <small className="id-display">{e.id}</small>
+                </p>
+                <p>
+                  <b>{e.name}</b>
+                  <br />
+                  time to prepare: {e.preparation_time + " "}s
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

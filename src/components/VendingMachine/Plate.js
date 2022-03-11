@@ -3,7 +3,7 @@ import React from "react";
 export default function Plate() {
   return (
     <div>
-      <p class="h5 text-light">Pick your order</p>
+      <p className="h4 text-light">Pick your order here</p>
       <div className="container fourth-border">
         <br />
         <br />

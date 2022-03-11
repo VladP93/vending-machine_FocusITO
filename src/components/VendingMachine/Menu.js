@@ -1,6 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import noFood from "../../assets/empty.png";
 
-export default function Menu() {
+export default function Menu(props) {
+  const { selectedFood, toast } = props;
+  const [orders, setOrders] = useState([]);
+  const [timmer, setTimmer] = useState(0);
+
+  const onSubmit = () => {
+    if (selectedFood.id == "") {
+      toast.error("please select an item");
+    } else {
+      toast.info(
+        "Preparing " +
+          selectedFood.name +
+          ". It will be ready in " +
+          selectedFood.preparation_time +
+          "s",
+        {
+          autoClose: selectedFood.preparation_time * 1000,
+        }
+      );
+      addOrder(
+        selectedFood.id + Date.now() / 1000,
+        selectedFood.name,
+        selectedFood.preparation_time,
+        selectedFood.thumbnail
+      );
+      onSuccess(selectedFood.name, selectedFood.preparation_time * 1000);
+    }
+  };
+
+  const onSuccess = (name, time) => {
+    setTimeout(() => {
+      toast.success(name + " has been prepared.", { autoClose: 1000 });
+    }, time);
+  };
+
+  function addOrder(id, name, time, img) {
+    var newElement = { id, name, time, img };
+    setOrders([...orders, newElement]);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      orders.forEach((o) => {
+        if (o.time > 0) {
+          o.time = o.time - 1;
+        }
+      });
+      setTimmer(timmer + 1);
+    }, 1000);
+    setOrders([...orders]);
+  }, [timmer]);
+
   return (
     <div>
       <div className="menu-container">
@@ -8,81 +60,56 @@ export default function Menu() {
         <p className="text-light h5">Selected food</p>
         <img
           className="selected-image"
-          src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-          alt="asd"
+          src={selectedFood.thumbnail === "" ? noFood : selectedFood.thumbnail}
+          alt={selectedFood.name}
         />
-        <p>Name</p>
-        <p>Time to prepare: xxx</p>
-        <input type="submit" value="Request" className="btn btn-success" />
+        <p className="h5">
+          {selectedFood.name === "" ? "No selected item" : selectedFood.name}
+        </p>
+        <p>
+          Time to prepare:{" "}
+          {selectedFood.preparation_time == 0
+            ? "..."
+            : selectedFood.preparation_time}{" "}
+          s
+        </p>
+        <input
+          type="button"
+          value="Request"
+          className="btn btn-success"
+          onClick={() => onSubmit()}
+        />
       </div>
-      <hr />
+      <hr className="separator" />
       <div>
         <p className="h5 text-light">Latest orders</p>
         <br />
-        <div className="third-border latest-order-container row">
-          <div className="col">
-            <img
-              className="latest-order-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-          </div>
-          <div className="col">
-            <p>ID</p>
-            <p className="text-light">Name</p>
-          </div>
-        </div>
-        <div className="third-border latest-order-container row">
-          <div className="col">
-            <img
-              className="latest-order-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-          </div>
-          <div className="col">
-            <p>ID</p>
-            <p className="text-light">Name</p>
-          </div>
-        </div>
-        <div className="third-border latest-order-container row">
-          <div className="col">
-            <img
-              className="latest-order-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-          </div>
-          <div className="col">
-            <p>ID</p>
-            <p className="text-light">Name</p>
-          </div>
-        </div>
-        <div className="third-border latest-order-container row">
-          <div className="col">
-            <img
-              className="latest-order-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-          </div>
-          <div className="col">
-            <p>ID</p>
-            <p className="text-light">Name</p>
-          </div>
-        </div>
-        <div className="third-border latest-order-container row">
-          <div className="col">
-            <img
-              className="latest-order-image"
-              src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg"
-              alt="asd"
-            />
-          </div>
-          <div className="col">
-            <p>ID</p>
-            <p className="text-light">Name</p>
-          </div>
+        <div className="orders-hist">
+          {orders
+            .slice(0)
+            .reverse()
+            .map((o) => {
+              return (
+                <div
+                  className="third-border latest-order-container row"
+                  key={o.id}
+                >
+                  <div className="col">
+                    <img
+                      className="latest-order-image"
+                      src={o.img}
+                      alt={o.name}
+                    />
+                  </div>
+                  <div className="col">
+                    <p className="text-light">
+                      Status: {o.time == 0 ? "Delivered" : o.time + "s"}
+                    </p>
+                    <p className="text-light">{o.name}</p>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
